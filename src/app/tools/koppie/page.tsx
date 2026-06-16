@@ -12,6 +12,29 @@ import {
   Server
 } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Koppie - Instant Cross-Device Clipboard Sharing CLI",
+  description: "Share text, commands, and snippets instantly between devices with Koppie CLI. No login required, using simple 4-digit codes. Support for piping, file sharing, and instant sync.",
+  keywords: ["clipboard sharing", "cli tool", "cross-device sync", "terminal clipboard", "developer utility", "koppie", "copy paste online", "online clipboard", "share clipboard online", "copy text between devices", "cross device clipboard"],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Koppie",
+  "operatingSystem": "Windows, macOS, Linux",
+  "applicationCategory": "DeveloperApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "A lightweight CLI that lets developers instantly move text, commands, logs, and snippets between devices using short numeric codes.",
+  "softwareVersion": "1.0.0",
+  "url": "https://freecodetools.dev/tools/koppie"
+};
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -34,6 +57,10 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function KoppiePage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-grow">
@@ -75,13 +102,13 @@ export default function KoppiePage() {
                  <div className="font-mono text-sm md:text-base space-y-4 text-white">
                     <div className="space-y-1">
                       <p className="text-white/40 font-bold tracking-widest text-[10px] uppercase">Device A (MacBook)</p>
-                      <p><span className="text-bauhaus-red">$</span> koppie send "ssh root@prod-1"</p>
-                      <p className="text-green-400">✓ Content synced. Use code: <span className="underline decoration-2 underline-offset-4">8421</span></p>
+                      <p><span className="text-bauhaus-red">$</span> echo "hello" | koppie send</p>
+                      <p className="text-green-400">✓ Content synced. Code: <span className="underline decoration-2 underline-offset-4">8421</span></p>
                     </div>
                     <div className="pt-4 space-y-1">
                       <p className="text-white/40 font-bold tracking-widest text-[10px] uppercase">Device B (Ubuntu Server)</p>
-                      <p><span className="text-bauhaus-blue">$</span> koppie 8421</p>
-                      <p className="text-white bg-bauhaus-blue/30 px-2 py-1 inline-block">ssh root@prod-1</p>
+                      <p><span className="text-bauhaus-blue">$</span> koppie get 8421</p>
+                      <p className="text-white bg-bauhaus-blue/30 px-2 py-1 inline-block">hello</p>
                     </div>
                  </div>
               </div>
@@ -177,19 +204,23 @@ export default function KoppiePage() {
               <ul className="space-y-4 font-bold text-sm uppercase tracking-wider">
                 <li className="flex items-start gap-3">
                   <div className="mt-1.5 w-2 h-2 bg-bauhaus-red" />
-                  <span>Send a message: <code className="text-bauhaus-red ml-2">koppie send "Hello"</code></span>
+                  <span>Send piped input: <code className="text-bauhaus-red ml-2">echo "hello" | koppie send</code></span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="mt-1.5 w-2 h-2 bg-bauhaus-red" />
+                  <span>Send file: <code className="text-bauhaus-red ml-2">cat file.txt | koppie send</code></span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1.5 w-2 h-2 bg-bauhaus-blue" />
-                  <span>Retrieve by code: <code className="text-bauhaus-blue ml-2">koppie 1234</code></span>
+                  <span>Retrieve by code: <code className="text-bauhaus-blue ml-2">koppie get 1234</code></span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 w-2 h-2 bg-bauhaus-yellow" />
-                  <span>Pipe data: <code className="text-bauhaus-yellow ml-2">cat log.txt | koppie send</code></span>
+                  <div className="mt-1.5 w-2 h-2 bg-bauhaus-blue" />
+                  <span>Copy to clipboard: <code className="text-bauhaus-blue ml-2">koppie copy 1234</code></span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 w-2 h-2 bg-bauhaus-ink dark:bg-white" />
-                  <span>Check status: <code className="text-bauhaus-ink dark:text-white ml-2">koppie --status</code></span>
+                  <div className="mt-1.5 w-2 h-2 bg-bauhaus-blue" />
+                  <span>Paste to file: <code className="text-bauhaus-blue ml-2">koppie paste 1234 > output.txt</code></span>
                 </li>
               </ul>
             </div>

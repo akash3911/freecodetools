@@ -2,64 +2,14 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/landing/Hero";
 import ToolCard from "@/components/tools/ToolCard";
 import Link from "next/link";
-import { 
-  Clipboard, 
-  Code, 
-  FileJson, 
-  Terminal, 
-  Cpu, 
-  Globe, 
-  Hash, 
-  Zap,
-  Lock,
-  RefreshCw,
-  Search
-} from "lucide-react";
+import { Metadata } from "next";
+import { tools } from "@/lib/registry";
+import { Zap } from "lucide-react";
 
-const tools = [
-  {
-    title: "Koppie",
-    description: "Cross-device clipboard sharing CLI using short numeric codes. Copy on your laptop, paste on your server instantly.",
-    href: "/tools/koppie",
-    icon: Clipboard,
-    color: "red" as const,
-  },
-  {
-    title: "JSON Formatter",
-    description: "Validate, format, and visualize complex JSON structures with high-performance processing and intuitive tree views.",
-    href: "/tools/json",
-    icon: FileJson,
-    color: "blue" as const,
-  },
-  {
-    title: "Regex Lab",
-    description: "Test and debug regular expressions in real-time with detailed explanation and visual breakdown of matches.",
-    href: "/tools/regex",
-    icon: Search,
-    color: "yellow" as const,
-  },
-  {
-    title: "Base64 Converter",
-    description: "Encode and decode text or files to Base64 format with support for various character encodings and large files.",
-    href: "/tools/base64",
-    icon: RefreshCw,
-    color: "blue" as const,
-  },
-  {
-    title: "JWT Decoder",
-    description: "Securely decode and inspect JSON Web Tokens locally. No data ever leaves your browser.",
-    href: "/tools/jwt",
-    icon: Lock,
-    color: "red" as const,
-  },
-  {
-    title: "HTTP Inspector",
-    description: "Mock and inspect HTTP requests, test endpoints, and generate client code in multiple languages.",
-    href: "/tools/http",
-    icon: Globe,
-    color: "yellow" as const,
-  }
-];
+export const metadata: Metadata = {
+  title: "FreeCodeTools.dev | Universal Toolbox for Modern Developers",
+  description: "FreeCodeTools.dev is a growing collection of essential utilities designed for developers who value speed, simplicity, and performance. Open-source and privacy-first.",
+};
 
 export default function Home() {
   return (
