@@ -68,7 +68,8 @@ export default function ShareClipboardBetweenDevices() {
                 <p>$ pbpaste | koppie send</p>
                 <p className="text-green-400">✓ Synced! Code: 7721</p>
                 <p className="pt-4 text-bauhaus-blue"># Pull on any other machine</p>
-                <p>$ koppie 7721 > config.json</p>
+                <p>$ koppie 7721 {">"} config.json</p>
+
              </div>
           </div>
         </section>
