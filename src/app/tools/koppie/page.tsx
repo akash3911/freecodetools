@@ -220,7 +220,7 @@ export default function KoppiePage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1.5 w-2 h-2 bg-bauhaus-blue" />
-                  <span>Paste to file: <code className="text-bauhaus-blue ml-2">koppie paste 1234 > output.txt</code></span>
+                  <span>Paste to file: <code className="text-bauhaus-blue ml-2">koppie paste 1234 {">"} output.txt</code></span>
                 </li>
               </ul>
             </div>
